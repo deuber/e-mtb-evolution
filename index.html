@@ -170,10 +170,6 @@ header { display: grid; gap: 20px; padding-bottom: 40px; }
 .plan-out .opt span { font-size: 0.88rem; color: var(--muted); }
 .fine { font-size: 0.85rem; color: var(--muted); max-width: 680px; }
 
-.gym-week { display: flex; gap: 6px; flex-wrap: wrap; }
-.gym-week span { flex: 1 1 0; min-width: 38px; text-align: center; font-family: var(--mono); font-size: 0.78rem; padding: 10px 0; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
-.gym-week span.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
-.gym-out { font-family: var(--mono); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 ol.points { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; max-width: 680px; }
 ol.points li::marker { font-family: var(--mono); color: var(--accent); }
 
@@ -313,17 +309,6 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
     <div class="layer"><span class="tag ac">Acoustic years</span><h3>Too tired for more</h3><ul><li>Big rides left him wiped out</li><li>No real gym routine</li><li>Fitness came almost entirely from riding</li></ul></div>
     <div class="layer"><span class="tag">E-MTB 2026</span><h3>Rides plus the gym</h3><ul><li>The gym 3–5 times a week</li><li>More miles and hours than any acoustic year</li><li>More climbing than any year before</li></ul></div>
     <div class="layer"><span class="tag lost">Why it matters</span><h3>Balance, strength, longevity</h3><ul><li>Balance and stability on technical terrain</li><li>Strength the bike doesn't build</li><li>Riding well for many more years</li></ul></div>
-  </div>
-  <div class="planner">
-    <div class="filters" role="group" aria-label="Gym sessions per week">
-      <span class="group-label">Gym days a week</span>
-      <button type="button" data-gym="3" aria-pressed="false">3</button>
-      <button type="button" data-gym="4" aria-pressed="true">4</button>
-      <button type="button" data-gym="5" aria-pressed="false">5</button>
-    </div>
-    <div class="gym-week" id="gym-week" aria-hidden="true"></div>
-    <p class="gym-out" id="gym-out"></p>
-    <p class="fine">An example week only, not an actual schedule. The yearly figure assumes every week of the year.</p>
   </div>
 </section>
 
@@ -521,19 +506,6 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
        <div class="opt"><span>Extra climbing on the e-MTB</span><b>+${fmtInt(e - a)} ft</b><span>${(e / a).toFixed(2)}× as much in the same time</span></div>`;
   }
   hrs.addEventListener("input", plan);
-
-  /* ---------- Gym week ---------- */
-  const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const GYM = { 3: [0, 2, 4], 4: [0, 1, 3, 4], 5: [0, 1, 2, 3, 4] };
-  function gym(n) {
-    document.getElementById("gym-week").innerHTML = DAYS.map((d, i) => `<span class="${GYM[n].includes(i) ? "on" : ""}">${d}</span>`).join("");
-    document.getElementById("gym-out").textContent = `${n} gym sessions a week · about ${n * 52} a year · ${7 - n} days a week for riding and rest`;
-  }
-  document.querySelectorAll("[data-gym]").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll("[data-gym]").forEach(o => o.setAttribute("aria-pressed", o === b));
-    gym(+b.dataset.gym);
-  }));
-  gym(4);
 
   let lastW = 0;
   new ResizeObserver(() => { const w = Math.round(svg.clientWidth); if (w && w !== lastW) { lastW = w; hide(); draw(); } }).observe(svg);
