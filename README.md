@@ -4,4 +4,4 @@ Five riding seasons (2022–2026) compared: what changed when David's acoustic m
 
 **View the page: https://deuber.github.io/e-mtb-evolution/**
 
-Data: season totals from Strava. 2026 is counted through early November.
+Data: season totals from Strava. The 2026 season is still in progress (totals from early November).
