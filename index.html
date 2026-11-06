@@ -170,6 +170,10 @@ header { display: grid; gap: 20px; padding-bottom: 40px; }
 .plan-out .opt span { font-size: 0.88rem; color: var(--muted); }
 .fine { font-size: 0.85rem; color: var(--muted); max-width: 680px; }
 
+.gym-week { display: flex; gap: 6px; flex-wrap: wrap; }
+.gym-week span { flex: 1 1 0; min-width: 38px; text-align: center; font-family: var(--mono); font-size: 0.78rem; padding: 10px 0; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
+.gym-week span.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+.gym-out { font-family: var(--mono); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 ol.points { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; max-width: 680px; }
 ol.points li::marker { font-family: var(--mono); color: var(--accent); }
 
@@ -186,7 +190,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <header>
   <div class="eyebrow">Knowledge base · Riding seasons · 2022–2026</div>
   <h1>The E‑MTB Evolution</h1>
-  <p class="lede">For four seasons David rode acoustic mountain bikes. Then his bike was stolen, and instead of sitting out the year he switched to e-MTBs. In 2026 he rode about as many miles and hours as usual, but he climbed far more: 180,092 ft, 44% more than his best acoustic year.</p>
+  <p class="lede">For four seasons David rode acoustic mountain bikes. Then his bike was stolen, and instead of sitting out the year he switched to e-MTBs. In 2026 he rode about as many miles and hours as usual, but he climbed far more: 180,092 ft, 44% more than his best acoustic year. And because he no longer comes home exhausted, he now has the energy to train in the gym 3–5 times a week.</p>
   <div class="meta">
     <span>David Deuber · Truckee, CA</span>
     <span>Strava season totals, 2022–2026</span>
@@ -201,6 +205,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   <a href="#compare">2026 vs. before</a>
   <a href="#everest">In Everests</a>
   <a href="#planner">Ride planner</a>
+  <a href="#gym">Off the bike</a>
   <a href="#meaning">What it means</a>
   <a href="#sources">Sources</a>
   <a href="#top" class="top">↑ Top</a>
@@ -302,13 +307,39 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   </div>
 </section>
 
+<section id="gym">
+  <div class="eyebrow">06 · Off the bike</div>
+  <h2>Energy left over for the gym</h2>
+  <div class="prose">
+    <p>The e-bike made a difference off the bike too. David now goes to the gym <b>3–5 times a week</b>, for balance, strength and long-term health. That's the part of training mountain biking alone doesn't cover.</p>
+    <p>On the acoustic bike, rides left him too tired to keep up any meaningful training off the bike. With the motor doing some of the climbing, he finishes rides with energy to spare, and the gym gets that energy.</p>
+  </div>
+  <div class="layers">
+    <div class="layer"><span class="tag ac">Acoustic years</span><h3>Too tired for more</h3><ul><li>Big rides left him wiped out</li><li>No real gym routine</li><li>Fitness came almost entirely from riding</li></ul></div>
+    <div class="layer"><span class="tag">E-MTB 2026</span><h3>Rides plus the gym</h3><ul><li>The gym 3–5 times a week</li><li>The same miles and hours on the bike</li><li>More climbing than any year before</li></ul></div>
+    <div class="layer"><span class="tag lost">Why it matters</span><h3>Balance, strength, longevity</h3><ul><li>Balance and stability on technical terrain</li><li>Strength the bike doesn't build</li><li>Riding well for many more years</li></ul></div>
+  </div>
+  <div class="planner">
+    <div class="filters" role="group" aria-label="Gym sessions per week">
+      <span class="group-label">Gym days a week</span>
+      <button type="button" data-gym="3" aria-pressed="false">3</button>
+      <button type="button" data-gym="4" aria-pressed="true">4</button>
+      <button type="button" data-gym="5" aria-pressed="false">5</button>
+    </div>
+    <div class="gym-week" id="gym-week" aria-hidden="true"></div>
+    <p class="gym-out" id="gym-out"></p>
+    <p class="fine">An example week only, not an actual schedule. The yearly figure assumes every week of the year.</p>
+  </div>
+</section>
+
 <section id="meaning">
-  <div class="eyebrow">06 · Takeaways</div>
+  <div class="eyebrow">07 · Takeaways</div>
   <h2>What it all means</h2>
   <ol class="points">
     <li><b>Far more climbing than ever before.</b> 2025 was his biggest year for distance, with more than 1,800 miles, but 2026 had far more climbing: <b>180,092 ft</b>, 44% more than the old record of 125,296 ft set in 2023. With the motor, steep climbs are no longer what ends a ride, so he can climb big peaks without wearing out.</li>
     <li><b>The same miles and hours as usual.</b> 2026 came in at 1,324 miles and 158 hours of riding, almost exactly his 2022–25 averages of about 1,287 miles and 158 hours. The e-bike didn't shorten his rides. It changed how steep they were and where in the Truckee backcountry he spent those hours.</li>
-    <li><b>A setback that turned into an upgrade.</b> Having the bike stolen could have ended the season. Switching to e-MTBs led to his best climbing year, regular riding all season and more time deep in the backcountry.</li>
+    <li><b>Energy for life off the bike.</b> On the acoustic bike, riding used up all his energy. Now there's enough left for the gym 3–5 times a week, building the balance, strength and long-term health that riding alone doesn't.</li>
+    <li><b>A setback that turned into an upgrade.</b> Having the bike stolen could have ended the season. Switching to e-MTBs led to his best climbing year, regular riding all season, more time deep in the backcountry and a regular gym routine.</li>
   </ol>
   <div class="callout"><p><b>About the 2025 numbers:</b> 2025 has the most miles and the most saddle time, but the least climbing per mile (about 55 ft/mi). That suggests a lot of flatter riding that year, such as gravel or road. Check the 2025 activity types on Strava before comparing that year directly with the mountain bike years.</p></div>
 </section>
@@ -507,6 +538,19 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
        <div class="opt"><span>Extra climbing on the e-MTB</span><b>+${fmtInt(e - a)} ft</b><span>${(e / a).toFixed(2)}× as much in the same time</span></div>`;
   }
   hrs.addEventListener("input", plan);
+
+  /* ---------- Gym week ---------- */
+  const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const GYM = { 3: [0, 2, 4], 4: [0, 1, 3, 4], 5: [0, 1, 2, 3, 4] };
+  function gym(n) {
+    document.getElementById("gym-week").innerHTML = DAYS.map((d, i) => `<span class="${GYM[n].includes(i) ? "on" : ""}">${d}</span>`).join("");
+    document.getElementById("gym-out").textContent = `${n} gym sessions a week · about ${n * 52} a year · ${7 - n} days a week for riding and rest`;
+  }
+  document.querySelectorAll("[data-gym]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("[data-gym]").forEach(o => o.setAttribute("aria-pressed", o === b));
+    gym(+b.dataset.gym);
+  }));
+  gym(4);
 
   let lastW = 0;
   new ResizeObserver(() => { const w = Math.round(svg.clientWidth); if (w && w !== lastW) { lastW = w; hide(); draw(); } }).observe(svg);
