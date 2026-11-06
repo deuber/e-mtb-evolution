@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The E-MTB Evolution</title>
-<meta name="description" content="Five riding seasons compared: what changed when David moved from acoustic mountain bikes to e-MTBs in 2026.">
+<meta name="description" content="Three riding seasons compared: what changed when David moved from acoustic mountain bikes to e-MTBs in 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -104,7 +104,7 @@ header { display: grid; gap: 20px; padding-bottom: 40px; }
 #chart { width: 100%; height: auto; display: block; overflow: visible; }
 #chart .grid { stroke: var(--line); stroke-width: 1; }
 #chart .axis-t { fill: var(--muted); font: 500 12px var(--mono); }
-#chart .val { fill: var(--fg); font: 500 13px var(--mono); font-variant-numeric: tabular-nums; }
+#chart .val { fill: var(--fg); font: 500 13px var(--mono); font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
 #chart .val.hi { font-weight: 600; }
 #chart .yr { fill: var(--fg); font: 600 13px var(--mono); }
 #chart .avgline { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
@@ -188,12 +188,12 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <div class="wrap" id="top">
 
 <header>
-  <div class="eyebrow">Knowledge base · Riding seasons · 2022–2026</div>
+  <div class="eyebrow">Knowledge base · Riding seasons · 2024–2026</div>
   <h1>The E‑MTB Evolution</h1>
-  <p class="lede">Until recently, David rode acoustic mountain bikes. When his bike was stolen, he took it as a sign that it was time to try something new, and he switched to e‑MTBs. In 2026 he rode more miles and more hours than in any acoustic year, and he climbed far more: 199,759 ft, 59% more than his best acoustic year. And because he no longer comes home exhausted, he now has the energy to train in the gym 3–5 times a week.</p>
+  <p class="lede">Until recently, David rode acoustic mountain bikes. When his bike was stolen, he took it as a sign that it was time to try something new, and he switched to e‑MTBs. In 2026 he rode more miles and more hours than in any acoustic year, and he climbed far more: 199,759 ft, 92% more than his best acoustic year. And because he no longer comes home exhausted, he now has the energy to train in the gym 3–5 times a week.</p>
   <div class="meta">
     <span>David Deuber · Truckee, CA</span>
-    <span>Strava season totals, 2022–2026</span>
+    <span>Strava season totals, 2024–2026</span>
     <span>2026 season still in progress (early November)</span>
   </div>
 </header>
@@ -201,7 +201,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <nav class="toc" aria-label="Contents">
   <span class="eyebrow">Jump to</span>
   <a href="#pivot">The pivot</a>
-  <a href="#seasons">Five seasons</a>
+  <a href="#seasons">Three seasons</a>
   <a href="#compare">2026 vs. before</a>
   <a href="#everest">In Everests</a>
   <a href="#planner">Ride planner</a>
@@ -230,7 +230,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
 <section id="seasons">
   <div class="eyebrow">02 · Multi-year comparison</div>
-  <h2>Five seasons, side by side</h2>
+  <h2>Three seasons, side by side</h2>
   <p class="prose">Pick a measure to redraw the chart. Totals show how much he rode. The ratios (climbing per mile, per hour and per ride) show what kind of riding it was. Hover over or tap a bar to see that year's numbers.</p>
 
   <div class="controls">
@@ -257,7 +257,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
         <h3 id="chart-title">Elevation gain by season</h3>
         <p class="chart-sub" id="chart-sub"></p>
       </div>
-      <div class="legend"><span class="ac"><i></i>Acoustic</span><span class="eb"><i></i>E-MTB</span><span class="avg"><i></i>2022–25 average</span></div>
+      <div class="legend"><span class="ac"><i></i>Acoustic</span><span class="eb"><i></i>E-MTB</span><span class="avg"><i></i>2024–25 average</span></div>
     </div>
     <svg id="chart" viewBox="0 0 720 340" role="img" aria-labelledby="chart-title chart-sub"></svg>
     <div class="tip" id="tip" role="status" aria-live="polite"></div>
@@ -278,7 +278,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <section id="compare">
   <div class="eyebrow">03 · The shift</div>
   <h2>2026 against the acoustic years</h2>
-  <p class="prose">Each number compares 2026 with the 2022–25 acoustic average. In the bar under each number, the tick marks the average and the green fill is 2026.</p>
+  <p class="prose">Each number compares 2026 with the 2024–25 acoustic average. In the bar under each number, the tick marks the average and the green fill is 2026.</p>
   <div class="deltas" id="deltas"></div>
   <p class="fine" id="delta-note"></p>
   <div class="callout"><p><b>The 2026 season isn't over yet.</b> These numbers are from early November. Trails are still rideable and there's no real snow on the ground yet, so 2026 may keep growing, and every comparison on this page will only get bigger.</p></div>
@@ -332,8 +332,8 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   <div class="eyebrow">07 · Takeaways</div>
   <h2>What it all means</h2>
   <ol class="points">
-    <li><b>Far more climbing than ever before.</b> 2026 had far more climbing than any acoustic year: <b>199,759 ft</b>, 59% more than the old record of 125,296 ft set in 2023. With the motor, steep climbs are no longer what ends a ride, so he can climb big peaks without wearing out.</li>
-    <li><b>More riding, not less.</b> 2026 came in at 1,544.5 miles and 181 hours of riding, his most of any year: about 49% more miles and 36% more hours than his 2022–25 averages of about 1,037 miles and 133 hours. Rides got longer too, averaging 14 miles instead of 9–10. The e-bike didn't shorten his rides. It made them longer and steeper, and took him deeper into the Truckee backcountry.</li>
+    <li><b>Far more climbing than ever before.</b> 2026 had far more climbing than any acoustic year: <b>199,759 ft</b>, 92% more than the old record of 103,808 ft set in 2025. With the motor, steep climbs are no longer what ends a ride, so he can climb big peaks without wearing out.</li>
+    <li><b>More riding, not less.</b> 2026 came in at 1,544.5 miles and 181 hours of riding, his most of any year: about 86% more miles and 66% more hours than his 2024–25 averages of about 829 miles and 109 hours. Rides got longer too, averaging 14 miles instead of about 9. The e-bike didn't shorten his rides. It made them longer and steeper, and took him deeper into the Truckee backcountry.</li>
     <li><b>A much bigger map.</b> The e-bike opened up places he would never have reached before, and it made steep, technical climbs a challenge he enjoys, one that uses his whole body, not just his legs.</li>
     <li><b>Energy for life off the bike.</b> On the acoustic bike, riding used up all his energy. Now there's enough left for the gym 3–5 times a week, building the balance, strength and long-term health that riding alone doesn't.</li>
     <li><b>A setback that turned into an upgrade.</b> The stolen bike came just as acoustic riding had started to feel like a grind. Switching to e-MTBs put the fun back in climbing, and it led to his best climbing year, regular riding all season, more time deep in the backcountry and a regular gym routine.</li>
@@ -343,7 +343,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <footer id="sources">
   <p>Knowledge base page. Season totals come from David's Strava profile. The ratios on this page (climbing per mile, per hour and per ride; miles per ride; average speed) are calculated from those totals. 2025 counts mountain bike rides only. The 2026 season is still in progress: these totals are from early November 2026, and trails are still open.</p>
   <ul>
-    <li><a href="https://www.strava.com/athletes/1098653">Strava athlete profile</a>: season totals for 2022–2026</li>
+    <li><a href="https://www.strava.com/athletes/1098653">Strava athlete profile</a>: season totals for 2024–2026</li>
     <li><a href="https://deuber.github.io/fruita-moab-2026/">Fruita &amp; Moab 2026</a>: the October e-MTB trip, part of the 2026 totals</li>
     <li>Everest height: 29,032 ft (8,849 m), the 2020 survey figure</li>
   </ul>
@@ -356,8 +356,6 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   const EVEREST = 29032;
   const H = (h, m) => h + m / 60;
   const YEARS = [
-    { y: 2022, setup: "Acoustic", acts: 122, dist: 1286.6, elev: 108356, time: H(145, 22) },
-    { y: 2023, setup: "Acoustic", acts: 128, dist: 1201.5, elev: 125296, time: H(169, 13) },
     { y: 2024, setup: "Acoustic", acts: 86,  dist: 784.4,  elev: 78673,  time: H(103, 14) },
     { y: 2025, setup: "Acoustic", acts: 92,  dist: 874.3,  elev: 103808, time: H(114, 41) },
     { y: 2026, setup: "E-MTB (Kenevo / Tero X)", acts: 110, dist: 1544.5, elev: 199759, time: H(181, 0), ebike: true },
@@ -374,11 +372,11 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
   const METRICS = {
     elev:   { label: "Elevation gain", title: "Elevation gain by season", unit: "ft", fmt: n => fmtInt(n) + " ft", short: n => compact(n), sub: "Total feet climbed. This is where the e-bike made the biggest difference." },
-    dist:   { label: "Distance", title: "Distance by season", unit: "mi", fmt: n => fmt1(n) + " mi", short: n => fmtInt(n), sub: "Total miles. 2026 is his biggest year, about 50% above the 2022–25 average." },
-    time:   { label: "Saddle time", title: "Saddle time by season", unit: "h", fmt: fmtTime, short: n => Math.round(n) + "h", sub: "Total moving time. 2026 is his biggest year, about 35% above the 2022–25 average." },
-    acts:   { label: "Activities", title: "Activities by season", unit: "", fmt: n => fmtInt(n) + " rides", short: n => fmtInt(n), sub: "Number of rides logged. 2026 had fewer rides than 2022 and 2023, but they were bigger." },
+    dist:   { label: "Distance", title: "Distance by season", unit: "mi", fmt: n => fmt1(n) + " mi", short: n => fmtInt(n), sub: "Total miles. 2026 is his biggest year, about 85% above the 2024–25 average." },
+    time:   { label: "Saddle time", title: "Saddle time by season", unit: "h", fmt: fmtTime, short: n => Math.round(n) + "h", sub: "Total moving time. 2026 is his biggest year, about 65% above the 2024–25 average." },
+    acts:   { label: "Activities", title: "Activities by season", unit: "", fmt: n => fmtInt(n) + " rides", short: n => fmtInt(n), sub: "Number of rides logged. 2026 had more rides than either acoustic year, and bigger ones." },
     ftmi:   { label: "Climb per mile", title: "Climbing per mile", unit: "ft/mi", fmt: n => fmtInt(n) + " ft/mi", short: n => fmtInt(n), sub: "Feet climbed for each mile ridden: how steep the riding was overall." },
-    fthr:   { label: "Climb per hour", title: "Climbing per hour of riding", unit: "ft/hr", fmt: n => fmtInt(n) + " ft/hr", short: n => fmtInt(n), sub: "Feet climbed per hour of saddle time. The motor raised this by about 40%." },
+    fthr:   { label: "Climb per hour", title: "Climbing per hour of riding", unit: "ft/hr", fmt: n => fmtInt(n) + " ft/hr", short: n => fmtInt(n), sub: "Feet climbed per hour of saddle time. The motor raised this by about 30%." },
     ftride: { label: "Climb per ride", title: "Climbing per ride", unit: "ft", fmt: n => fmtInt(n) + " ft", short: n => fmtInt(n), sub: "Average climbing in a single ride. In 2026 the average ride climbed about 1,800 ft." },
     miride: { label: "Miles per ride", title: "Miles per ride", unit: "mi", fmt: n => fmt1(n) + " mi", short: n => fmt1(n), sub: "Average ride length in miles." },
     mph:    { label: "Avg speed", title: "Average moving speed", unit: "mph", fmt: n => fmt1(n) + " mph", short: n => fmt1(n), sub: "Distance divided by saddle time. Despite the extra climbing, 2026 was a little faster than the acoustic years." },
@@ -448,7 +446,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
     document.getElementById("chart-title").textContent = m.title;
     document.getElementById("chart-sub").textContent = m.sub;
-    const e = YEARS[4][metric], pct = (e / a - 1) * 100;
+    const e = YEARS[YEARS.length - 1][metric], pct = (e / a - 1) * 100;
     document.getElementById("chart-note").textContent =
       `2026: ${m.fmt(e)} · ${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% vs. acoustic avg`;
   }
@@ -486,9 +484,9 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
   /* ---------- Comparison tiles ---------- */
   const TILE_KEYS = ["elev", "dist", "time", "acts", "ftmi", "fthr", "ftride", "mph"];
-  function baseline(kind, k) { return { v: avgOf(k), name: "2022–25 average" }; }
+  function baseline(kind, k) { return { v: avgOf(k), name: "2024–25 average" }; }
   function drawDeltas(kind) {
-    const e = YEARS[4];
+    const e = YEARS[YEARS.length - 1];
     document.getElementById("deltas").innerHTML = TILE_KEYS.map(k => {
       const m = METRICS[k], b = baseline(kind, k), pct = (e[k] / b.v - 1) * 100;
       const cls = Math.abs(pct) < 5 ? "flat" : pct > 0 ? "up" : "down";
@@ -513,7 +511,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
   /* ---------- Planner ---------- */
   const rateAc = acoustic.reduce((s, d) => s + d.elev, 0) / acoustic.reduce((s, d) => s + d.time, 0);
-  const rateEb = YEARS[4].fthr;
+  const rateEb = YEARS[YEARS.length - 1].fthr;
   const hrs = document.getElementById("hrs"), hout = document.getElementById("hrs-out");
   function plan() {
     const h = +hrs.value; hout.textContent = fmtTime(h);
