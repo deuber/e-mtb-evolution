@@ -170,6 +170,18 @@ header { display: grid; gap: 20px; padding-bottom: 40px; }
 .plan-out .opt span { font-size: 0.88rem; color: var(--muted); }
 .fine { font-size: 0.85rem; color: var(--muted); max-width: 680px; }
 
+.packs { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+.pack { display: grid; gap: 6px; justify-items: center; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
+.pack .cell { width: 64px; border: 2px solid var(--line); border-radius: 6px; position: relative; overflow: hidden; background: var(--bg); }
+.pack.main .cell { height: 96px; }
+.pack.ext .cell { height: 48px; }
+.pack .cell span { position: absolute; left: 0; right: 0; bottom: 0; background: var(--bar-ebike); transition: height .3s ease; }
+.pack.off .cell { border-style: dashed; opacity: .5; }
+.pack.need .cell { border-color: var(--bar-ebike); }
+.pack.over .cell { border-color: var(--flag); }
+.pack.over .cell span { background: var(--flag); }
+.bat-verdict { font-weight: 600; }
+.bat-verdict.warn { color: var(--flag); }
 ol.points { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; max-width: 680px; }
 ol.points li::marker { font-family: var(--mono); color: var(--accent); }
 
@@ -202,6 +214,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   <a href="#everest">In Everests</a>
   <a href="#planner">Ride planner</a>
   <a href="#gym">Off the bike</a>
+  <a href="#bike">The bike</a>
   <a href="#meaning">What it means</a>
   <a href="#sources">Sources</a>
   <a href="#top" class="top">↑ Top</a>
@@ -312,8 +325,38 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   </div>
 </section>
 
+<section id="bike">
+  <div class="eyebrow">07 · Side note · The bike</div>
+  <h2>Why the Levo SL, and what comes next</h2>
+  <div class="prose">
+    <p>David rides a <b>Specialized Levo SL</b> because it still makes him pedal. On climbs his average heart rate stays around <b>130–140 bpm</b>, which is zone 2, so every climb is still a real workout. The motor helps, but it doesn't do the work for him.</p>
+    <p>The catch is range. The Levo SL has a <b>320 Wh</b> battery, and at 210 lb he needs one range extender to plan a ride with 3,000 ft of climbing and a second one for 4,000 ft. Carrying extenders works, but it isn't ideal. For big days he'd like a <b>500–600 Wh</b> battery.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>130–140</b><span>bpm average on climbs: zone 2</span></div>
+    <div class="fact"><b>320 Wh</b><span>main battery on the Levo SL</span></div>
+    <div class="fact"><b>+1</b><span>range extender for a 3,000 ft day</span></div>
+    <div class="fact"><b>+2</b><span>range extenders for a 4,000 ft day</span></div>
+  </div>
+
+  <div class="planner">
+    <label for="climb">Planned climbing <output id="climb-out" for="climb">3,000 ft</output></label>
+    <input type="range" id="climb" min="1000" max="5500" step="250" value="3000">
+    <div class="packs" id="packs" aria-hidden="true"></div>
+    <p class="bat-verdict" id="bat-verdict" role="status"></p>
+    <div class="plan-out" id="bat-alt"></div>
+    <p class="fine">A rough estimate based on David's own numbers. Two extenders cover about 4,000 ft, which works out to about 160 Wh per 1,000 ft of climbing for a 210 lb rider at around 70% assist, assuming each extender adds 160 Wh. The actual range depends on assist mode, trail, temperature and how much he pedals.</p>
+  </div>
+
+  <div class="layers">
+    <div class="layer"><span class="tag">Why it works</span><h3>Still a workout</h3><ul><li>He still has to pedal</li><li>Zone 2 heart rate on climbs, 130–140 bpm</li><li>The motor helps, but he does the work</li></ul></div>
+    <div class="layer"><span class="tag ac">The trade-off</span><h3>Range on big days</h3><ul><li>Only a 320 Wh battery</li><li>One extender for 3,000 ft, two for 4,000 ft</li><li>Wishes he had 500–600 Wh</li></ul></div>
+    <div class="layer"><span class="tag lost">Someday</span><h3>A bigger bike, with care</h3><ul><li>Likely moves to a more powerful bike with more range</li><li>Concern: bikes that can reach 28 mph, in the wrong hands</li><li>Speed on shared trails puts other riders and hikers at risk, and could cost e-bikes trail access</li></ul></div>
+  </div>
+</section>
+
 <section id="meaning">
-  <div class="eyebrow">07 · Takeaways</div>
+  <div class="eyebrow">08 · Takeaways</div>
   <h2>What it all means</h2>
   <ol class="points">
     <li><b>Far more climbing than ever before.</b> 2026 had far more climbing than any acoustic year: <b>199,759 ft</b>, 92% more than the old record of 103,808 ft set in 2025. With the motor, steep climbs are no longer what ends a ride, so he can climb big peaks without wearing out.</li>
@@ -506,6 +549,34 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
        <div class="opt"><span>Extra climbing on the e-MTB</span><b>+${fmtInt(e - a)} ft</b><span>${(e / a).toFixed(2)}× as much in the same time</span></div>`;
   }
   hrs.addEventListener("input", plan);
+
+  /* ---------- Battery planner ---------- */
+  const WH_PER_1000 = 160, MAIN = 320, EXT = 160;
+  const climb = document.getElementById("climb");
+  function battery() {
+    const ft = +climb.value, need = ft / 1000 * WH_PER_1000;
+    document.getElementById("climb-out").textContent = fmtInt(ft) + " ft";
+    const packs = [["main", "320 Wh", MAIN], ["ext", "Ext 1", EXT], ["ext", "Ext 2", EXT]];
+    let left = need;
+    const html = packs.map(([kind, label, cap], i) => {
+      const used = Math.min(cap, Math.max(0, left)); left -= cap;
+      const state = used > 0 ? "need" : "off";
+      return `<div class="pack ${kind} ${state}${i === 2 && need > MAIN + 2 * EXT ? " over" : ""}"><div class="cell"><span style="height:${(used / cap * 100).toFixed(0)}%"></span></div>${label}</div>`;
+    }).join("");
+    document.getElementById("packs").innerHTML = html;
+    const v = document.getElementById("bat-verdict");
+    const exts = need <= MAIN ? 0 : need <= MAIN + EXT ? 1 : need <= MAIN + 2 * EXT ? 2 : 3;
+    v.className = "bat-verdict" + (exts === 3 ? " warn" : "");
+    v.textContent = exts === 0 ? `About ${fmtInt(need)} Wh: the main battery should cover it.`
+      : exts === 3 ? `About ${fmtInt(need)} Wh: more than the main battery plus two extenders (640 Wh). Too far for the Levo SL as he rides it today.`
+      : `About ${fmtInt(need)} Wh: bring ${exts === 1 ? "one range extender" : "both range extenders"}.`;
+    document.getElementById("bat-alt").innerHTML = [500, 600].map(c => {
+      const ok = need <= c;
+      return `<div class="opt${ok ? " eb" : ""}"><span>With a ${c} Wh battery</span><b>${ok ? "No extender" : "+1 extender"}</b><span>covers about ${fmtInt(c / WH_PER_1000 * 1000)} ft on its own</span></div>`;
+    }).join("");
+  }
+  climb.addEventListener("input", battery);
+  battery();
 
   let lastW = 0;
   new ResizeObserver(() => { const w = Math.round(svg.clientWidth); if (w && w !== lastW) { lastW = w; hide(); draw(); } }).observe(svg);
