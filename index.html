@@ -190,7 +190,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <header>
   <div class="eyebrow">Knowledge base · Riding seasons · 2022–2026</div>
   <h1>The E‑MTB Evolution</h1>
-  <p class="lede">Until recently, David rode acoustic mountain bikes. When his bike was stolen, he took it as a sign that it was time to try something new, and he switched to e-MTBs. In 2026 he rode more miles and hours than in an average acoustic year, and he climbed far more: 199,759 ft, 59% more than his best acoustic year. And because he no longer comes home exhausted, he now has the energy to train in the gym 3–5 times a week.</p>
+  <p class="lede">Until recently, David rode acoustic mountain bikes. When his bike was stolen, he took it as a sign that it was time to try something new, and he switched to e‑MTBs. In 2026 he rode more miles and hours than in an average acoustic year, and he climbed far more: 199,759 ft, 59% more than his best acoustic year. And because he no longer comes home exhausted, he now has the energy to train in the gym 3–5 times a week.</p>
   <div class="meta">
     <span>David Deuber · Truckee, CA</span>
     <span>Strava season totals, 2022–2026</span>
@@ -375,7 +375,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   const fmtInt = n => Math.round(n).toLocaleString("en-US");
   const fmt1 = n => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const fmtTime = h => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return hh + " h " + String(mm).padStart(2, "0") + " m"; };
-  const compact = n => n >= 10000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 1) + "k" : fmtInt(n);
+  const compact = n => n >= 10000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/, "") + "k" : fmtInt(n);
 
   const METRICS = {
     elev:   { label: "Elevation gain", title: "Elevation gain by season", unit: "ft", fmt: n => fmtInt(n) + " ft", short: n => compact(n), sub: "Total feet climbed. This is where the e-bike made the biggest difference." },
@@ -408,7 +408,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   let metric = "elev";
 
   const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
-  const niceMax = v => { const p = Math.pow(10, Math.floor(Math.log10(v))); const s = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find(x => x * p >= v); return s * p; };
+  const niceStep = v => { const p = Math.pow(10, Math.floor(Math.log10(v))); return [1, 2, 5, 10].find(x => x * p >= v) * p; };
 
   function barPath(x, y, w, h, r) {
     r = Math.min(r, h, w / 2);
@@ -419,11 +419,11 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
     size();
     const m = METRICS[metric];
     svg.innerHTML = "";
-    const max = niceMax(Math.max(...YEARS.map(d => d[metric])) * 1.08);
+    const top = Math.max(...YEARS.map(d => d[metric])) * 1.08, step = niceStep(top / 5), ticks = Math.ceil(top / step), max = step * ticks;
     const sy = v => M.t + ih - (v / max) * ih;
     // grid + axis ticks
-    for (let i = 0; i <= 4; i++) {
-      const v = (max / 4) * i, y = sy(v);
+    for (let i = 0; i <= ticks; i++) {
+      const v = step * i, y = sy(v);
       el("line", { class: "grid", x1: M.l, x2: W - M.r + 40, y1: y, y2: y }, svg);
       const t = el("text", { class: "axis-t", x: M.l - 8, y: y + 4, "text-anchor": "end" }, svg);
       t.textContent = m.short(v);
