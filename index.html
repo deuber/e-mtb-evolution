@@ -277,14 +277,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <section id="compare">
   <div class="eyebrow">03 · The shift</div>
   <h2>2026 against the acoustic years</h2>
-  <p class="prose">Choose what to compare 2026 against. In the bar under each number, the tick marks the baseline and the green fill is 2026.</p>
-  <div class="filters" role="group" aria-label="Baseline">
-    <span class="group-label">Compare to</span>
-    <button type="button" data-base="avg" aria-pressed="true">2022–25 average</button>
-    <button type="button" data-base="best" aria-pressed="false">Best acoustic year</button>
-    <button type="button" data-base="y2025" aria-pressed="false">2025</button>
-    <button type="button" data-base="y2023" aria-pressed="false">2023</button>
-  </div>
+  <p class="prose">Each number compares 2026 with the 2022–25 acoustic average. In the bar under each number, the tick marks the average and the green fill is 2026.</p>
   <div class="deltas" id="deltas"></div>
   <p class="fine" id="delta-note"></p>
 </section>
@@ -491,11 +484,7 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 
   /* ---------- Comparison tiles ---------- */
   const TILE_KEYS = ["elev", "dist", "time", "acts", "ftmi", "fthr", "ftride", "mph"];
-  function baseline(kind, k) {
-    if (kind === "avg") return { v: avgOf(k), name: "2022–25 average" };
-    if (kind === "best") { const b = acoustic.reduce((a, d) => d[k] > a[k] ? d : a); return { v: b[k], name: "best acoustic year (" + b.y + ")" }; }
-    const yr = +kind.slice(1); return { v: YEARS.find(d => d.y === yr)[k], name: String(yr) };
-  }
+  function baseline(kind, k) { return { v: avgOf(k), name: "2022–25 average" }; }
   function drawDeltas(kind) {
     const e = YEARS[4];
     document.getElementById("deltas").innerHTML = TILE_KEYS.map(k => {
@@ -508,14 +497,8 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
         <span class="base">vs. ${m.fmt(b.v)}, ${b.name}</span>
         <div class="meter" aria-hidden="true"><span style="width:${(e[k] / top * 100).toFixed(1)}%"></span><em style="left:${(b.v / top * 100).toFixed(1)}%"></em></div></div>`;
     }).join("");
-    document.getElementById("delta-note").textContent = kind === "best"
-      ? "“Best acoustic year” uses the highest acoustic value for each measure separately, so the baseline year can differ from tile to tile."
-      : "Within ±5% counts as about the same.";
+    document.getElementById("delta-note").textContent = "Within ±5% counts as about the same.";
   }
-  document.querySelectorAll("[data-base]").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll("[data-base]").forEach(o => o.setAttribute("aria-pressed", o === b));
-    drawDeltas(b.dataset.base);
-  }));
 
   /* ---------- Everest stack ---------- */
   const peak = frac => `<svg viewBox="0 0 28 28" aria-hidden="true"><path class="pk" d="M1 27 L14 2 L27 27 Z" style="clip-path: inset(0 ${((1 - frac) * 100).toFixed(1)}% 0 0)"/></svg>`;
