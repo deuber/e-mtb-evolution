@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The E-MTB Evolution</title>
+<meta name="description" content="Five riding seasons compared: what changed when David moved from acoustic mountain bikes to e-MTBs in 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, with wider breakouts for the season chart and comparison tiles */
+:root {
+  --bg: #f4f4f0;
+  --surface: #ffffff;
+  --fg: #1d221f;
+  --muted: #5d665f;
+  --line: #dcdfd8;
+  --accent: #2f6b55;       /* juniper */
+  --accent-soft: #e0eee7;
+  --flag: #a8620a;         /* desert varnish amber */
+  --flag-soft: #f8ecd8;
+  --code-bg: #eaece6;
+  --bar-ebike: #14805c;    /* validated pair, light surface */
+  --bar-acoustic: #b0751c;
+  --up: #1d7a4c;
+  --down: #a3411f;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121513; --surface: #1a1f1c; --fg: #e5e9e4; --muted: #9ba59d; --line: #2c3430;
+    --accent: #6fc39f; --accent-soft: #1b3329; --flag: #eeb45c; --flag-soft: #3a2b14;
+    --code-bg: #202622; --bar-ebike: #38a079; --bar-acoustic: #bc842e; --up: #6fcf98; --down: #f08a68; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121513; --surface: #1a1f1c; --fg: #e5e9e4; --muted: #9ba59d; --line: #2c3430;
+  --accent: #6fc39f; --accent-soft: #1b3329; --flag: #eeb45c; --flag-soft: #3a2b14;
+  --code-bg: #202622; --bar-ebike: #38a079; --bar-acoustic: #bc842e; --up: #6fcf98; --down: #f08a68; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.62; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 56px 80px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+[id] { scroll-margin-top: 64px; }
+.toc { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 6px 14px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; padding: 12px 0; margin-top: 8px; background: var(--bg); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.8rem; }
+.toc::-webkit-scrollbar { display: none; }
+.toc a { text-decoration: none; padding: 4px 2px; }
+.toc a:hover { text-decoration: underline; }
+.toc .top { margin-left: auto; color: var(--muted); }
+section { display: grid; gap: 18px; padding-block: 44px; border-top: 1px solid var(--line); }
+header { display: grid; gap: 20px; padding-bottom: 40px; }
+.lede { font-size: 1.2rem; max-width: 680px; }
+.prose { max-width: 680px; display: grid; gap: 12px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 0.85rem; color: var(--muted); }
+.callout { border-left: 3px solid var(--flag); padding: 4px 0 4px 18px; max-width: 680px; }
+
+/* Headline figures */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.fact { background: var(--surface); padding: 18px; display: grid; gap: 4px; align-content: start; }
+.fact b { font-family: var(--display); font-size: 1.9rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+.fact span { font-size: 0.9rem; color: var(--muted); }
+
+/* Bikes */
+.layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.layer { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.layer h3 { font-size: 1rem; }
+.layer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 0.92rem; }
+.tag { justify-self: start; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.tag.ac { background: var(--flag-soft); color: var(--flag); }
+.tag.lost { background: var(--code-bg); color: var(--muted); }
+
+/* Segmented controls */
+.controls { display: grid; gap: 10px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: 500 0.85rem var(--body); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.filters button:hover { border-color: var(--accent); }
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.filters .group-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); align-self: center; margin-right: 4px; }
+
+/* Season chart */
+.chart-card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; display: grid; gap: 14px; position: relative; }
+.chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; align-items: baseline; }
+.chart-head h3 { font-size: 1.15rem; }
+.chart-sub { font-size: 0.92rem; color: var(--muted); max-width: 640px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+.legend .ac i { background: var(--bar-acoustic); }
+.legend .eb i { background: var(--bar-ebike); }
+.legend .avg i { height: 0; border-top: 2px dashed var(--muted); border-radius: 0; vertical-align: 3px; }
+#chart { width: 100%; height: auto; display: block; overflow: visible; }
+#chart .grid { stroke: var(--line); stroke-width: 1; }
+#chart .axis-t { fill: var(--muted); font: 500 12px var(--mono); }
+#chart .val { fill: var(--fg); font: 500 13px var(--mono); font-variant-numeric: tabular-nums; }
+#chart .val.hi { font-weight: 600; }
+#chart .yr { fill: var(--fg); font: 600 13px var(--mono); }
+#chart .avgline { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+#chart .avg-t { fill: var(--muted); font: 500 11px var(--mono); }
+#chart .bar { transition: opacity .15s; }
+#chart .hit { fill: transparent; cursor: pointer; outline: none; }
+#chart.hovering .bar:not(.on) { opacity: .45; }
+.tip { position: absolute; pointer-events: none; background: var(--fg); color: var(--bg); border-radius: 6px; padding: 10px 12px; font-size: 0.82rem; line-height: 1.45; min-width: 200px; box-shadow: 0 6px 20px rgb(0 0 0 / .18); opacity: 0; transform: translateY(4px); transition: opacity .12s, transform .12s; z-index: 5; }
+.tip.show { opacity: 1; transform: none; }
+.tip b { font-family: var(--display); font-size: 0.95rem; display: block; margin-bottom: 4px; }
+.tip dl { margin: 0; display: grid; grid-template-columns: auto auto; gap: 1px 14px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.tip dt { opacity: .7; }
+.tip dd { margin: 0; text-align: right; }
+.tip dd.cur { font-weight: 600; }
+.chart-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; }
+.linkbtn { font: 500 0.85rem var(--body); color: var(--accent); background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Table */
+.tbl-wrap { overflow-x: auto; }
+.money { border-collapse: collapse; width: 100%; font-size: 0.9rem; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.money th, .money td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; white-space: nowrap; }
+.money th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.money .n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.money tr.eb td { font-weight: 600; background: var(--accent-soft); }
+.money tr:last-child td { border-bottom: 0; }
+.money th.sortable { cursor: pointer; }
+.money th.sortable:hover { color: var(--fg); }
+
+/* Comparison tiles */
+.deltas { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.delta { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.delta .k { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.delta .v { font-family: var(--display); font-weight: 800; font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.delta .chg { font-family: var(--mono); font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+.delta .chg.up { color: var(--up); }
+.delta .chg.down { color: var(--down); }
+.delta .chg.flat { color: var(--muted); }
+.delta .base { font-size: 0.82rem; color: var(--muted); }
+.delta .meter { height: 6px; background: var(--line); border-radius: 3px; position: relative; margin-top: 4px; }
+.delta .meter span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--bar-ebike); }
+.delta .meter em { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--fg); }
+
+/* Everest stack */
+.everest { display: grid; gap: 10px; }
+.ev-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) 76px; gap: 12px; align-items: center; }
+.ev-row .y { font-family: var(--mono); font-size: 0.86rem; font-weight: 600; }
+.ev-row .n { font-family: var(--mono); font-size: 0.86rem; text-align: right; font-variant-numeric: tabular-nums; }
+.ev-peaks { display: flex; gap: 3px; align-items: flex-end; height: 30px; }
+.ev-peaks svg { height: 28px; width: 28px; flex: none; }
+.ev-peaks .pk { fill: var(--bar-acoustic); }
+.ev-row.ebike .ev-peaks .pk { fill: var(--bar-ebike); }
+@media (max-width: 560px) { .ev-peaks svg { width: 18px; height: 18px; } .ev-row { grid-template-columns: 44px minmax(0,1fr) 60px; gap: 8px; } }
+
+/* Ride planner */
+.planner { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; display: grid; gap: 16px; }
+.planner label { font-weight: 600; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.planner label output { font-family: var(--mono); font-weight: 500; color: var(--accent); }
+.planner input[type=range] { width: 100%; accent-color: var(--accent); }
+.plan-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.plan-out .opt { border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; }
+.plan-out .opt.eb { border-color: var(--bar-ebike); background: var(--accent-soft); }
+.plan-out .opt b { font-family: var(--display); font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+.plan-out .opt span { font-size: 0.88rem; color: var(--muted); }
+.fine { font-size: 0.85rem; color: var(--muted); max-width: 680px; }
+
+ol.points { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; max-width: 680px; }
+ol.points li::marker { font-family: var(--mono); color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); padding-top: 28px; display: grid; gap: 10px; font-size: 0.88rem; color: var(--muted); }
+footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+@media (prefers-reduced-motion: no-preference) { a, .filters button { transition: color .15s, background .15s; } #chart .bar, #chart .val { transition: y .35s ease, height .35s ease, opacity .15s; } }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+@media (forced-colors: active) { #chart .bar { fill: CanvasText; } #chart .bar.ebike { fill: Highlight; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+
+<header>
+  <div class="eyebrow">Knowledge base · Riding seasons · 2022–2026</div>
+  <h1>The E‑MTB Evolution</h1>
+  <p class="lede">For four seasons David rode acoustic mountain bikes. Then his bike was stolen, and instead of sitting out the year he switched to e-MTBs. In 2026 he rode about as many miles and hours as usual, but he climbed far more: 180,092 ft, 44% more than his best acoustic year.</p>
+  <div class="meta">
+    <span>David Deuber · Truckee, CA</span>
+    <span>Strava season totals, 2022–2026</span>
+    <span>2026 counted through early November</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <span class="eyebrow">Jump to</span>
+  <a href="#pivot">The pivot</a>
+  <a href="#seasons">Five seasons</a>
+  <a href="#compare">2026 vs. before</a>
+  <a href="#everest">In Everests</a>
+  <a href="#planner">Ride planner</a>
+  <a href="#meaning">What it means</a>
+  <a href="#sources">Sources</a>
+  <a href="#top" class="top">↑ Top</a>
+</nav>
+
+<section id="pivot">
+  <div class="eyebrow">01 · The catalyst</div>
+  <h2>The stolen bike and the switch</h2>
+  <div class="prose">
+    <p>Before 2026, every season was ridden on acoustic mountain bikes, meaning bikes with no motor. That included more than 12,800 miles on a Specialized SL4 and the rougher backcountry days on a Megatower XL.</p>
+    <p>Then the acoustic setup was stolen. The choice was to ride less that year or try something new, and David switched to e-MTBs. That didn't make riding easier. It changed where he could ride: longer climbs, trails that had been too far to reach, and more rides with Aksel.</p>
+  </div>
+  <div class="layers">
+    <div class="layer"><span class="tag ac">Before · acoustic</span><h3>Specialized SL4</h3><ul><li>More than 12,800 miles</li><li>His main bike for years</li></ul></div>
+    <div class="layer"><span class="tag ac">Before · acoustic</span><h3>Megatower XL</h3><ul><li>Rough backcountry terrain</li></ul></div>
+    <div class="layer"><span class="tag lost">The setback</span><h3>Stolen</h3><ul><li>The acoustic setup was stolen</li><li>Ride less, or adapt</li></ul></div>
+    <div class="layer"><span class="tag">2026 · e-MTB</span><h3>Specialized Kenevo &amp; Turbo Tero X</h3><ul><li>Long climbs are no longer the limit</li><li>More riding days with Aksel</li><li>Includes the <a href="https://deuber.github.io/fruita-moab-2026/">Fruita &amp; Moab trip</a> in October</li></ul></div>
+  </div>
+</section>
+
+<section id="seasons">
+  <div class="eyebrow">02 · Multi-year comparison</div>
+  <h2>Five seasons, side by side</h2>
+  <p class="prose">Pick a measure to redraw the chart. Totals show how much he rode. The ratios (climbing per mile, per hour and per ride) show what kind of riding it was. Hover over or tap a bar to see that year's numbers.</p>
+
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Season totals">
+      <span class="group-label">Totals</span>
+      <button type="button" data-metric="elev" aria-pressed="true">Elevation</button>
+      <button type="button" data-metric="dist" aria-pressed="false">Distance</button>
+      <button type="button" data-metric="time" aria-pressed="false">Saddle time</button>
+      <button type="button" data-metric="acts" aria-pressed="false">Activities</button>
+    </div>
+    <div class="filters" role="group" aria-label="Ride shape">
+      <span class="group-label">Ratios</span>
+      <button type="button" data-metric="ftmi" aria-pressed="false">Climb per mile</button>
+      <button type="button" data-metric="fthr" aria-pressed="false">Climb per hour</button>
+      <button type="button" data-metric="ftride" aria-pressed="false">Climb per ride</button>
+      <button type="button" data-metric="miride" aria-pressed="false">Miles per ride</button>
+      <button type="button" data-metric="mph" aria-pressed="false">Avg speed</button>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-head">
+      <div>
+        <h3 id="chart-title">Elevation gain by season</h3>
+        <p class="chart-sub" id="chart-sub"></p>
+      </div>
+      <div class="legend"><span class="ac"><i></i>Acoustic</span><span class="eb"><i></i>E-MTB</span><span class="avg"><i></i>2022–25 average</span></div>
+    </div>
+    <svg id="chart" viewBox="0 0 720 340" role="img" aria-labelledby="chart-title chart-sub"></svg>
+    <div class="tip" id="tip" role="status" aria-live="polite"></div>
+    <div class="chart-foot">
+      <span class="eyebrow" id="chart-note"></span>
+      <button type="button" class="linkbtn" id="tbl-toggle" aria-expanded="false" aria-controls="tbl">Show the table</button>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" id="tbl" hidden>
+    <table class="money">
+      <thead><tr><th>Year</th><th>Bike setup</th><th class="n">Activities</th><th class="n">Distance</th><th class="n">Elevation gain</th><th class="n">Saddle time</th><th class="n">Ft / mi</th><th class="n">Ft / hr</th></tr></thead>
+      <tbody id="tbl-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="eyebrow">03 · The shift</div>
+  <h2>2026 against the acoustic years</h2>
+  <p class="prose">Choose what to compare 2026 against. In the bar under each number, the tick marks the baseline and the green fill is 2026.</p>
+  <div class="filters" role="group" aria-label="Baseline">
+    <span class="group-label">Compare to</span>
+    <button type="button" data-base="avg" aria-pressed="true">2022–25 average</button>
+    <button type="button" data-base="best" aria-pressed="false">Best acoustic year</button>
+    <button type="button" data-base="y2025" aria-pressed="false">2025</button>
+    <button type="button" data-base="y2023" aria-pressed="false">2023</button>
+  </div>
+  <div class="deltas" id="deltas"></div>
+  <p class="fine" id="delta-note"></p>
+</section>
+
+<section id="everest">
+  <div class="eyebrow">04 · Scale</div>
+  <h2>Each season in Everests</h2>
+  <p class="prose">To give a sense of scale, here is each season's climbing counted in Everests, from sea level to the summit (29,032 ft). 2026 adds up to more than six.</p>
+  <div class="everest" id="ev"></div>
+</section>
+
+<section id="planner">
+  <div class="eyebrow">05 · Try it</div>
+  <h2>Ride planner: same hours, different bike</h2>
+  <p class="prose">Set how long a ride is. The planner estimates how much he'd climb at each bike's season-average climbing rate, measured in feet per hour of saddle time.</p>
+  <div class="planner">
+    <label for="hrs">Ride length <output id="hrs-out" for="hrs">2 h 00 m</output></label>
+    <input type="range" id="hrs" min="0.5" max="6" step="0.25" value="2">
+    <div class="plan-out" id="plan-out"></div>
+    <p class="fine">These are season averages, not predictions. A single ride depends on the trail, the assist mode and the battery. On the Moab trip, for example, the Levo SL's range extenders gave about 4,000 ft of climbing at 70% assist.</p>
+  </div>
+</section>
+
+<section id="meaning">
+  <div class="eyebrow">06 · Takeaways</div>
+  <h2>What it all means</h2>
+  <ol class="points">
+    <li><b>Far more climbing than ever before.</b> 2025 was his biggest year for distance, with more than 1,800 miles, but 2026 had far more climbing: <b>180,092 ft</b>, 44% more than the old record of 125,296 ft set in 2023. With the motor, steep climbs are no longer what ends a ride, so he can climb big peaks without wearing out.</li>
+    <li><b>The same miles and hours as usual.</b> 2026 came in at 1,324 miles and 158 hours of riding, almost exactly his 2022–25 averages of about 1,287 miles and 158 hours. The e-bike didn't shorten his rides. It changed how steep they were and where in the Truckee backcountry he spent those hours.</li>
+    <li><b>A setback that turned into an upgrade.</b> Having the bike stolen could have ended the season. Switching to e-MTBs led to his best climbing year, regular riding all season and more time deep in the backcountry.</li>
+  </ol>
+  <div class="callout"><p><b>About the 2025 numbers:</b> 2025 has the most miles and the most saddle time, but the least climbing per mile (about 55 ft/mi). That suggests a lot of flatter riding that year, such as gravel or road. Check the 2025 activity types on Strava before comparing that year directly with the mountain bike years.</p></div>
+</section>
+
+<footer id="sources">
+  <p>Knowledge base page. Season totals come from David's Strava profile. The ratios on this page (climbing per mile, per hour and per ride; miles per ride; average speed) are calculated from those totals. The 2026 season is counted through early November 2026.</p>
+  <ul>
+    <li><a href="https://www.strava.com/athletes/1098653">Strava athlete profile</a>: season totals for 2022–2026</li>
+    <li><a href="https://deuber.github.io/fruita-moab-2026/">Fruita &amp; Moab 2026</a>: the October e-MTB trip, part of the 2026 totals</li>
+    <li>Everest height: 29,032 ft (8,849 m), the 2020 survey figure</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(() => {
+  const EVEREST = 29032;
+  const H = (h, m) => h + m / 60;
+  const YEARS = [
+    { y: 2022, setup: "Acoustic", acts: 122, dist: 1286.6, elev: 108356, time: H(145, 22) },
+    { y: 2023, setup: "Acoustic", acts: 128, dist: 1201.5, elev: 125296, time: H(169, 13) },
+    { y: 2024, setup: "Acoustic", acts: 86,  dist: 784.4,  elev: 78673,  time: H(103, 14) },
+    { y: 2025, setup: "Acoustic", acts: 93,  dist: 1874.2, elev: 103808, time: H(213, 41) },
+    { y: 2026, setup: "E-MTB (Kenevo / Tero X)", acts: 89, dist: 1324.0, elev: 180092, time: H(158, 4), ebike: true },
+  ];
+  YEARS.forEach(d => {
+    d.ftmi = d.elev / d.dist; d.fthr = d.elev / d.time; d.ftride = d.elev / d.acts;
+    d.miride = d.dist / d.acts; d.mph = d.dist / d.time;
+  });
+
+  const fmtInt = n => Math.round(n).toLocaleString("en-US");
+  const fmt1 = n => n.toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const fmtTime = h => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return hh + " h " + String(mm).padStart(2, "0") + " m"; };
+  const compact = n => n >= 10000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 1) + "k" : fmtInt(n);
+
+  const METRICS = {
+    elev:   { label: "Elevation gain", title: "Elevation gain by season", unit: "ft", fmt: n => fmtInt(n) + " ft", short: n => compact(n), sub: "Total feet climbed. This is where the e-bike made the biggest difference." },
+    dist:   { label: "Distance", title: "Distance by season", unit: "mi", fmt: n => fmt1(n) + " mi", short: n => fmtInt(n), sub: "Total miles. 2026 is close to the 2022–25 average." },
+    time:   { label: "Saddle time", title: "Saddle time by season", unit: "h", fmt: fmtTime, short: n => Math.round(n) + "h", sub: "Total moving time. 2026 is almost exactly the 2022–25 average." },
+    acts:   { label: "Activities", title: "Activities by season", unit: "", fmt: n => fmtInt(n) + " rides", short: n => fmtInt(n), sub: "Number of rides logged. 2026 had fewer rides than 2022 and 2023, but they were bigger." },
+    ftmi:   { label: "Climb per mile", title: "Climbing per mile", unit: "ft/mi", fmt: n => fmtInt(n) + " ft/mi", short: n => fmtInt(n), sub: "Feet climbed for each mile ridden: how steep the riding was overall." },
+    fthr:   { label: "Climb per hour", title: "Climbing per hour of riding", unit: "ft/hr", fmt: n => fmtInt(n) + " ft/hr", short: n => fmtInt(n), sub: "Feet climbed per hour of saddle time. The motor raised this by about 50%." },
+    ftride: { label: "Climb per ride", title: "Climbing per ride", unit: "ft", fmt: n => fmtInt(n) + " ft", short: n => fmtInt(n), sub: "Average climbing in a single ride. In 2026 the average ride climbed about 2,000 ft." },
+    miride: { label: "Miles per ride", title: "Miles per ride", unit: "mi", fmt: n => fmt1(n) + " mi", short: n => fmt1(n), sub: "Average ride length in miles." },
+    mph:    { label: "Avg speed", title: "Average moving speed", unit: "mph", fmt: n => fmt1(n) + " mph", short: n => fmt1(n), sub: "Distance divided by saddle time. Despite the climbing, 2026 was about as fast as other years." },
+  };
+  const acoustic = YEARS.filter(d => !d.ebike);
+  const avgOf = k => acoustic.reduce((s, d) => s + d[k], 0) / acoustic.length;
+
+  /* ---------- Chart ---------- */
+  const svg = document.getElementById("chart");
+  const tip = document.getElementById("tip");
+  const card = svg.parentElement;
+  const NS = "http://www.w3.org/2000/svg";
+  let W = 720, Hh = 340, M, iw, ih;
+  function size() {
+    W = Math.max(300, Math.round(svg.clientWidth || 720));
+    const narrow = W < 520;
+    Hh = narrow ? 280 : 340;
+    M = { t: 28, r: narrow ? 48 : 64, b: 36, l: narrow ? 40 : 52 };
+    iw = W - M.l - M.r; ih = Hh - M.t - M.b;
+    svg.setAttribute("viewBox", `0 0 ${W} ${Hh}`);
+  }
+  let metric = "elev";
+
+  const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+  const niceMax = v => { const p = Math.pow(10, Math.floor(Math.log10(v))); const s = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find(x => x * p >= v); return s * p; };
+
+  function barPath(x, y, w, h, r) {
+    r = Math.min(r, h, w / 2);
+    return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+  }
+
+  function draw() {
+    size();
+    const m = METRICS[metric];
+    svg.innerHTML = "";
+    const max = niceMax(Math.max(...YEARS.map(d => d[metric])) * 1.08);
+    const sy = v => M.t + ih - (v / max) * ih;
+    // grid + axis ticks
+    for (let i = 0; i <= 4; i++) {
+      const v = (max / 4) * i, y = sy(v);
+      el("line", { class: "grid", x1: M.l, x2: W - M.r + 40, y1: y, y2: y }, svg);
+      const t = el("text", { class: "axis-t", x: M.l - 8, y: y + 4, "text-anchor": "end" }, svg);
+      t.textContent = m.short(v);
+    }
+    const slot = iw / YEARS.length, bw = Math.min(72, slot * 0.56);
+    YEARS.forEach((d, i) => {
+      const cx = M.l + slot * i + slot / 2, x = cx - bw / 2, y = sy(d[metric]), h = M.t + ih - y;
+      const p = el("path", { class: "bar" + (d.ebike ? " ebike" : ""), d: barPath(x, y, bw, h, 4), fill: d.ebike ? "var(--bar-ebike)" : "var(--bar-acoustic)" }, svg);
+      p.dataset.i = i;
+      const v = el("text", { class: "val" + (d.ebike ? " hi" : ""), x: cx, y: y - 8, "text-anchor": "middle" }, svg);
+      v.textContent = m.short(d[metric]);
+      const yr = el("text", { class: "yr", x: cx, y: Hh - 12, "text-anchor": "middle" }, svg);
+      yr.textContent = d.y;
+      const hit = el("rect", { class: "hit", x: M.l + slot * i, y: M.t, width: slot, height: ih + M.b, tabindex: 0, role: "button", "aria-label": `${d.y}, ${d.setup}: ${m.fmt(d[metric])}` }, svg);
+      hit.addEventListener("pointerenter", e => show(i, e));
+      hit.addEventListener("pointermove", e => show(i, e));
+      hit.addEventListener("pointerleave", hide);
+      hit.addEventListener("focus", () => show(i));
+      hit.addEventListener("blur", hide);
+      hit.addEventListener("click", e => show(i, e));
+    });
+    // acoustic average reference line
+    const a = avgOf(metric), ay = sy(a);
+    el("line", { class: "avgline", x1: M.l, x2: W - M.r + 4, y1: ay, y2: ay }, svg);
+    const at = el("text", { class: "avg-t", x: W - M.r + 8, y: ay + 4 }, svg);
+    at.textContent = "avg " + m.short(a);
+
+    document.getElementById("chart-title").textContent = m.title;
+    document.getElementById("chart-sub").textContent = m.sub;
+    const e = YEARS[4][metric], pct = (e / a - 1) * 100;
+    document.getElementById("chart-note").textContent =
+      `2026: ${m.fmt(e)} · ${pct >= 0 ? "+" : ""}${pct.toFixed(0)}% vs. acoustic avg`;
+  }
+
+  function show(i, evt) {
+    const d = YEARS[i];
+    svg.classList.add("hovering");
+    svg.querySelectorAll(".bar").forEach(b => b.classList.toggle("on", +b.dataset.i === i));
+    const rows = [["elev", "Elevation"], ["dist", "Distance"], ["time", "Saddle time"], ["acts", "Activities"], ["ftmi", "Climb / mi"], ["fthr", "Climb / hr"]];
+    tip.innerHTML = `<b>${d.y} · ${d.setup}</b><dl>` + rows.map(([k, l]) =>
+      `<dt>${l}</dt><dd class="${k === metric ? "cur" : ""}">${METRICS[k].fmt(d[k])}</dd>`).join("") + `</dl>`;
+    const cr = card.getBoundingClientRect(), sr = svg.getBoundingClientRect();
+    const scale = sr.width / W;
+    const slot = iw / YEARS.length;
+    let x = sr.left - cr.left + (M.l + slot * i + slot / 2) * scale;
+    let y = sr.top - cr.top + M.t * scale + 10;
+    tip.classList.add("show");
+    const tw = tip.offsetWidth;
+    x = x + 16 + tw > cr.width ? x - tw - 16 : x + 16;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = y + "px";
+  }
+  function hide() { svg.classList.remove("hovering"); svg.querySelectorAll(".bar").forEach(b => b.classList.remove("on")); tip.classList.remove("show"); }
+
+  document.querySelectorAll("[data-metric]").forEach(b => b.addEventListener("click", () => {
+    metric = b.dataset.metric;
+    document.querySelectorAll("[data-metric]").forEach(o => o.setAttribute("aria-pressed", o === b));
+    hide(); draw();
+  }));
+
+  /* ---------- Table ---------- */
+  document.getElementById("tbl-body").innerHTML = YEARS.map(d => `<tr class="${d.ebike ? "eb" : ""}"><td>${d.y}</td><td>${d.setup}</td><td class="n">${d.acts}</td><td class="n">${fmt1(d.dist)} mi</td><td class="n">${fmtInt(d.elev)} ft</td><td class="n">${fmtTime(d.time)}</td><td class="n">${fmtInt(d.ftmi)}</td><td class="n">${fmtInt(d.fthr)}</td></tr>`).join("");
+  const tbtn = document.getElementById("tbl-toggle"), tbl = document.getElementById("tbl");
+  tbtn.addEventListener("click", () => { const open = tbl.hidden; tbl.hidden = !open; tbtn.setAttribute("aria-expanded", open); tbtn.textContent = open ? "Hide the table" : "Show the table"; });
+
+  /* ---------- Comparison tiles ---------- */
+  const TILE_KEYS = ["elev", "dist", "time", "acts", "ftmi", "fthr", "ftride", "mph"];
+  function baseline(kind, k) {
+    if (kind === "avg") return { v: avgOf(k), name: "2022–25 average" };
+    if (kind === "best") { const b = acoustic.reduce((a, d) => d[k] > a[k] ? d : a); return { v: b[k], name: "best acoustic year (" + b.y + ")" }; }
+    const yr = +kind.slice(1); return { v: YEARS.find(d => d.y === yr)[k], name: String(yr) };
+  }
+  function drawDeltas(kind) {
+    const e = YEARS[4];
+    document.getElementById("deltas").innerHTML = TILE_KEYS.map(k => {
+      const m = METRICS[k], b = baseline(kind, k), pct = (e[k] / b.v - 1) * 100;
+      const cls = Math.abs(pct) < 5 ? "flat" : pct > 0 ? "up" : "down";
+      const arrow = cls === "flat" ? "≈" : pct > 0 ? "▲" : "▼";
+      const top = Math.max(e[k], b.v) * 1.1;
+      return `<div class="delta"><span class="k">${m.label}</span><span class="v">${m.fmt(e[k])}</span>
+        <span class="chg ${cls}">${arrow} ${pct >= 0 ? "+" : ""}${pct.toFixed(0)}%${cls === "flat" ? " · about the same" : ""}</span>
+        <span class="base">vs. ${m.fmt(b.v)}, ${b.name}</span>
+        <div class="meter" aria-hidden="true"><span style="width:${(e[k] / top * 100).toFixed(1)}%"></span><em style="left:${(b.v / top * 100).toFixed(1)}%"></em></div></div>`;
+    }).join("");
+    document.getElementById("delta-note").textContent = kind === "best"
+      ? "“Best acoustic year” uses the highest acoustic value for each measure separately, so the baseline year can differ from tile to tile."
+      : "Within ±5% counts as about the same.";
+  }
+  document.querySelectorAll("[data-base]").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("[data-base]").forEach(o => o.setAttribute("aria-pressed", o === b));
+    drawDeltas(b.dataset.base);
+  }));
+
+  /* ---------- Everest stack ---------- */
+  const peak = frac => `<svg viewBox="0 0 28 28" aria-hidden="true"><path class="pk" d="M1 27 L14 2 L27 27 Z" style="clip-path: inset(0 ${((1 - frac) * 100).toFixed(1)}% 0 0)"/></svg>`;
+  document.getElementById("ev").innerHTML = YEARS.map(d => {
+    const n = d.elev / EVEREST, full = Math.floor(n), part = n - full;
+    let peaks = ""; for (let i = 0; i < full; i++) peaks += peak(1);
+    if (part > 0.05) peaks += peak(part);
+    return `<div class="ev-row${d.ebike ? " ebike" : ""}" role="img" aria-label="${d.y}: ${n.toFixed(1)} Everests"><span class="y">${d.y}</span><span class="ev-peaks">${peaks}</span><span class="n">${n.toFixed(1)}×</span></div>`;
+  }).join("");
+
+  /* ---------- Planner ---------- */
+  const rateAc = acoustic.reduce((s, d) => s + d.elev, 0) / acoustic.reduce((s, d) => s + d.time, 0);
+  const rateEb = YEARS[4].fthr;
+  const hrs = document.getElementById("hrs"), hout = document.getElementById("hrs-out");
+  function plan() {
+    const h = +hrs.value; hout.textContent = fmtTime(h);
+    const a = rateAc * h, e = rateEb * h;
+    document.getElementById("plan-out").innerHTML =
+      `<div class="opt"><span>Acoustic pace · ${fmtInt(rateAc)} ft/hr</span><b>${fmtInt(a)} ft</b><span>about ${(a / EVEREST * 100).toFixed(0)}% of an Everest</span></div>
+       <div class="opt eb"><span>E-MTB pace · ${fmtInt(rateEb)} ft/hr</span><b>${fmtInt(e)} ft</b><span>about ${(e / EVEREST * 100).toFixed(0)}% of an Everest</span></div>
+       <div class="opt"><span>Extra climbing on the e-MTB</span><b>+${fmtInt(e - a)} ft</b><span>${(e / a).toFixed(2)}× as much in the same time</span></div>`;
+  }
+  hrs.addEventListener("input", plan);
+
+  let lastW = 0;
+  new ResizeObserver(() => { const w = Math.round(svg.clientWidth); if (w && w !== lastW) { lastW = w; hide(); draw(); } }).observe(svg);
+  draw(); drawDeltas("avg"); plan();
+})();
+</script>
+</body>
+</html>
