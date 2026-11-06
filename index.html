@@ -182,6 +182,11 @@ header { display: grid; gap: 20px; padding-bottom: 40px; }
 .pack.over .cell span { background: var(--flag); }
 .bat-verdict { font-weight: 600; }
 .bat-verdict.warn { color: var(--flag); }
+.bike-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 24px 36px; align-items: start; }
+.bike-photo { margin: 0; display: grid; gap: 8px; }
+.bike-photo img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--line); background: var(--code-bg); }
+.bike-photo figcaption { font-size: 0.84rem; color: var(--muted); }
+@media (max-width: 760px) { .bike-intro { grid-template-columns: 1fr; } .bike-photo { max-width: 420px; } }
 ol.points { margin: 0; padding-left: 1.4em; display: grid; gap: 14px; max-width: 680px; }
 ol.points li::marker { font-family: var(--mono); color: var(--accent); }
 
@@ -328,9 +333,15 @@ footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
 <section id="bike">
   <div class="eyebrow">07 · Side note · The bike</div>
   <h2>Why the Levo SL, and what comes next</h2>
-  <div class="prose">
-    <p>David rides a <b>Specialized Levo SL</b> because it still makes him pedal. On climbs his average heart rate stays around <b>130–140 bpm</b>, which is zone 2, so every climb is still a real workout. The motor helps, but it doesn't do the work for him.</p>
-    <p>The catch is range. The Levo SL has a <b>320 Wh</b> battery, and at 210 lb he needs one range extender to plan a ride with 3,000 ft of climbing and a second one for 4,000 ft. Carrying extenders works, but it isn't ideal. For big days he'd like a <b>500–600 Wh</b> battery.</p>
+  <div class="bike-intro">
+    <div class="prose">
+      <p>David rides a <b>Specialized Levo SL</b> because it still makes him pedal. On climbs his average heart rate stays around <b>130–140 bpm</b>, which is zone 2, so every climb is still a real workout. The motor helps, but it doesn't do the work for him.</p>
+      <p>The catch is range. The Levo SL has a <b>320 Wh</b> battery, and at 210 lb he needs one range extender to plan a ride with 3,000 ft of climbing and a second one for 4,000 ft. Carrying extenders works, but it isn't ideal. For big days he'd like a <b>500–600 Wh</b> battery.</p>
+    </div>
+    <figure class="bike-photo">
+      <img src="images/levo-sl.jpg" width="1050" height="1400" loading="lazy" alt="David's Specialized Levo SL leaning against a sandstone boulder on red-dirt desert singletrack, under a big rock overhang and a cloudy blue sky.">
+      <figcaption>David's current bike, the Specialized Levo SL, on red-rock singletrack.</figcaption>
+    </figure>
   </div>
   <div class="facts">
     <div class="fact"><b>130–140</b><span>bpm average on climbs: zone 2</span></div>
